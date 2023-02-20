@@ -57,11 +57,11 @@ class Export(GlancesExport):
             )
             sys.exit(2)
 
-        if not es.ping():
-            logger.critical("Cannot ping the ElasticSearch server %s://%s:%s" % (self.scheme, self.host, self.port))
-            sys.exit(2)
-        else:
-            logger.info("Connected to the ElasticSearch server %s://%s:%s" % (self.scheme, self.host, self.port))
+        # if not es.ping():
+        #     logger.critical("Cannot ping the ElasticSearch server %s://%s:%s" % (self.scheme, self.host, self.port))
+        #     sys.exit(2)
+        # else:
+        #     logger.info("Connected to the ElasticSearch server %s://%s:%s" % (self.scheme, self.host, self.port))
 
         return es
 
