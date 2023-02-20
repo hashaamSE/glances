@@ -27,8 +27,8 @@ class Export(GlancesExport):
 
         # Mandatory configuration keys (additional to host and port)
         self.index = None
-        self.user=None
-        self.password=None
+        self.user = None
+        self.password = None
 
         # Load the ES configuration file
         self.export_enable = self.load_conf(
@@ -38,7 +38,7 @@ class Export(GlancesExport):
             sys.exit(2)
 
         logger.info(
-            "Configs %s://%s:%s %s %s %s" % (self.scheme, self.host, self.port, self.user, self.password, self.options)
+            "Configs %s://%s:%s %s %s %s" % (self.scheme, self.host, self.port, self.user, self.password)
         )
         # Init the ES client
         self.client = self.init()
