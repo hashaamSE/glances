@@ -27,14 +27,19 @@ class Export(GlancesExport):
 
         # Mandatory configuration keys (additional to host and port)
         self.index = None
+        self.user=None
+        self.password=None
 
         # Load the ES configuration file
         self.export_enable = self.load_conf(
-            'elasticsearch', mandatories=['scheme', 'host', 'port', 'index'], options=[]
+            'elasticsearch', mandatories=['scheme', 'host', 'port', 'index', 'user', 'password'], options=[]
         )
         if not self.export_enable:
             sys.exit(2)
 
+        logger.info(
+            "Configs %s://%s:%s %s %s %s" % (self.scheme, self.host, self.port, self.user, self.password, self.options)
+        )
         # Init the ES client
         self.client = self.init()
 
@@ -45,7 +50,7 @@ class Export(GlancesExport):
 
         try:
             es = Elasticsearch(hosts=['{}://{}:{}'.format(self.scheme, self.host, self.port)],
-                               basic_auth=('{}'.format(self.user), '{}'.format(self.password)))
+                               basic_auth=('elastic', 'elastic'))
         except Exception as e:
             logger.critical(
                 "Cannot connect to ElasticSearch server %s://%s:%s (%s)" % (self.scheme, self.host, self.port, e)
