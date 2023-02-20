@@ -19,7 +19,6 @@ from elasticsearch import Elasticsearch, helpers
 
 
 class Export(GlancesExport):
-
     """This class manages the ElasticSearch (ES) export module."""
 
     def __init__(self, config=None, args=None):
@@ -45,7 +44,8 @@ class Export(GlancesExport):
             return None
 
         try:
-            es = Elasticsearch(hosts=['{}://{}:{}'.format(self.scheme, self.host, self.port)])
+            es = Elasticsearch(hosts=['{}://{}:{}'.format(self.scheme, self.host, self.port)],
+                               basic_auth=('{}'.format(self.user), '{}'.format(self.password)))
         except Exception as e:
             logger.critical(
                 "Cannot connect to ElasticSearch server %s://%s:%s (%s)" % (self.scheme, self.host, self.port, e)
