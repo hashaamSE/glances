@@ -37,9 +37,9 @@ class Export(GlancesExport):
         if not self.export_enable:
             sys.exit(2)
 
-        logger.info(
-            "Configs %s://%s:%s %s %s %s" % (self.scheme, self.host, self.port, self.user, self.password)
-        )
+        # logger.info(
+        #     "Configs %s://%s:%s %s %s" % (self.scheme, self.host, self.port, self.user, self.password)
+        # )
         # Init the ES client
         self.client = self.init()
 
