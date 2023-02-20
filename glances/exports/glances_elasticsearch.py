@@ -50,7 +50,7 @@ class Export(GlancesExport):
 
         try:
             es = Elasticsearch(hosts=['{}://{}:{}'.format(self.scheme, self.host, self.port)],
-                               basic_auth=('elastic', 'elastic'))
+                               basic_auth=("elastic", "elastic"), verify_certs=True)
         except Exception as e:
             logger.critical(
                 "Cannot connect to ElasticSearch server %s://%s:%s (%s)" % (self.scheme, self.host, self.port, e)
